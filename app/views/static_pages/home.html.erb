@@ -1,0 +1,40 @@
+<% if cookies[:lat] || cookies[:long] %>
+  <script>
+    deleteLatLong();
+  </script>
+<% end %>
+
+	<div class="jumbotron jumbotron-fluid center partlyCloudyBG">
+		<div class="container">
+		  <canvas id="<%="icon1"%>" class="card-img-top"  width="128" height="128"></canvas>
+		  <h1 class="display-4 thin">Storm.ly</h1>
+      <h5 class="light">simple hyperlocal weather forecasting</h5>  <br />
+      <button class="btn btn-primary btn-lg" 
+      				id="btnLocation" 
+      				onclick="geoFindMe()">
+      	<span id="btnText">&nbsp; Current Location</span>
+			</button>
+			<div id="out"></div>
+  	</div>
+  </div>
+
+
+
+  <%= javascript_tag do %>
+  var skycons = new Skycons({
+     "monochrome": false,
+     "colors" : {
+       "cloud" : "aliceBlue",
+       "fog"   : "#E5E5E5",
+       "moon"  : "#e6e9d0"
+     }
+     });
+
+    skycons.add("icon1", Skycons.<%= @randomSkyconLtd%>);   
+
+    skycons.play();
+
+  $('.ticker').ticker();
+
+
+  <% end %>
